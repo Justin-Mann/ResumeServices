@@ -1,5 +1,4 @@
 ﻿using ResumeCore.Entity.Base;
-using ResumeCore.Entity.Models;
 
 namespace MyResumeAPI.Models {
     public class ResumeEntity: BaseEntity {
