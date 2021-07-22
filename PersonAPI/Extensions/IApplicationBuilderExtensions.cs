@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using PersonAPI.Models;
-using ResumeCore.Entity.Models;
 using ResumeCore.Interface;
 using System.Collections.Generic;
 using System.Linq;

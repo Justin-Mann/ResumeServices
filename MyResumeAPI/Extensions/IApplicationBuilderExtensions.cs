@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using MyResumeAPI.Models;
-using ResumeCore.Entity.Models;
 using ResumeCore.Interface;
 using System;
 using System.Collections.Generic;
@@ -60,7 +59,7 @@ namespace MyResumeAPI.Extensions {
                                     },
                                     StartDate = null,
                                     EndDate = new DateTime(2008, 05, 01),
-                                    AreasOfStudy = "Computer Science, Software Developement, Computer Architecture, Business Management, Mathematics",
+                                    AreasOfStudy = "Computer Science, Software Developement, Computer Architecture, Business Management, Mathematics".Trim().Split(","),
                                     CompletedDegrees = new List<Degree> {
                                         new Degree {
                                             Name = "Bachelors of Computer Science, Math Minor",
@@ -79,7 +78,7 @@ namespace MyResumeAPI.Extensions {
                                     },
                                     StartDate = null,
                                     EndDate= null,
-                                    AreasOfStudy = "Electrical Engineering, Computer Science",
+                                    AreasOfStudy = "Electrical Engineering, Computer Science".Trim().Split(","),
                                     CompletedDegrees = new List<Degree> { },
                                     Partials = new List<Degree> {
                                         new Degree {

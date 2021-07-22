@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ResumeCore.Entity.Models {
+﻿namespace MyResumeAPI.Models {
     public class Person {
         public string FName { get; set; }
         public string MName { get; set; }
