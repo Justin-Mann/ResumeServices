@@ -1,5 +1,4 @@
-﻿using ResumeCore.Entity.Models;
-using System;
+﻿using System;
 
 namespace PersonAPI.Models.Response {
     public class PersonResponse : Person {
