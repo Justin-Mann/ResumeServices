@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using InstitutionAPI.Models;
-using ResumeCore.Entity.Models;
 using ResumeCore.Interface;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
@@ -11,7 +10,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using InstitutionAPI.Models.Response;
 using Microsoft.Extensions.Logging;
-using ResumeInfastructure.CosmosDbData.Repository;
 
 namespace InstitutionAPI.Controllers {
     /// <summary>

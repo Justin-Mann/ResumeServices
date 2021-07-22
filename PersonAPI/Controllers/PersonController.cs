@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PersonAPI.Models;
 using PersonAPI.Models.Response;
-using ResumeCore.Entity.Models;
 using ResumeCore.Interface;
 using Swashbuckle.AspNetCore.Annotations;
 using System;

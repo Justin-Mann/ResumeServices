@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using PersonAPI.Models;
 using PersonAPI.Models.Response;
-using ResumeCore.Entity.Models;
 
 namespace PersonAPI.AutoMapper {
     public class PersonProfile: Profile {
