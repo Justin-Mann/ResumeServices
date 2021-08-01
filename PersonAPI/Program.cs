@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ResumeCore.Helpers;
 
 namespace PersonAPI {
     public class Program {
@@ -14,6 +16,15 @@ namespace PersonAPI {
 
                     webBuilder.ConfigureKestrel(serverOptions => {
                         serverOptions.AddServerHeader = false;
+                    });
+
+                    webBuilder.ConfigureAppConfiguration((hostingContext, configBuilder) => {
+                        configBuilder
+                            .AddJsonFile("appsettings.json", true, true)
+                            .AddEnvironmentVariables()
+                            .BootstrapKeyVault();
+
+                        if ( args != null ) configBuilder.AddCommandLine(args);
                     });
 
                     webBuilder.ConfigureLogging(builder => {

@@ -31,6 +31,9 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "KeyVault_BaseUrl": "https://jemkv.vault.azure.net/"
+      },
       "publishAllPorts": true,
       "useSSL": true
     }

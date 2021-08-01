@@ -20,7 +20,7 @@ namespace PersonAPI.Config {
             CosmosDbSettings cosmosDbConfig = configuration.GetSection("ConnectionStrings:CosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
-                                 cosmosDbConfig.PrimaryKey,
+                                 cosmosDbConfig.PrimaryKey ?? configuration.GetValue<string>("ResumeServices:ConnectionStrings:CosmosDb:PrimaryKey"),
                                  cosmosDbConfig.DatabaseName,
                                  cosmosDbConfig.Containers);
 

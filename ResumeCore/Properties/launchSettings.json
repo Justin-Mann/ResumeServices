@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ResumeCore": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "KeyVault_BaseUrl": "https://jemkv.vault.azure.net/"
+      }
+    }
+  }
+}
