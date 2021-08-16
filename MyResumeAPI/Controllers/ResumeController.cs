@@ -92,7 +92,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetAllResumesDetailed() {
-            _logger.LogInformation("Begin : Get All Institutions");
+            _logger.LogInformation("Begin : Get All Resumes");
             try {
                 string query = @$"SELECT * FROM c";
                 var results = await _resumeRepo.GetItemsAsync(query);
