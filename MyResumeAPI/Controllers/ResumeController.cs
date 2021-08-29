@@ -224,7 +224,34 @@ namespace MyResumeAPI.Controllers {
         #endregion
 
         #region Delete
-        //TODO: HttpDelete
+        /// <summary>
+        /// Removes an existing Resume Entity from the system.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Ok Response or Error.</returns>
+        [HttpDelete("remove/{id:guid}")]
+        [SwaggerResponse(200, "Success")]
+        [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
+        [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
+        [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
+        public async Task<IActionResult> Remove([FromRoute] Guid id) {
+            _logger.LogInformation("Begin : Remove Resume", id);
+            try {
+                if (!await _resumeRepo.DeleteItemAsync(id.ToString())) {
+                    var msg = $"The resume with id({id}) was not found.";
+                    _logger.LogWarning($"NotFound - {msg}");
+                    return NotFound(msg);
+                }
+                _logger.LogInformation("End : Remove Resume - Success", id);
+                return Ok();
+            } catch (ArgumentException ae) {
+                _logger.LogError(ae, "BadRequest");
+                return BadRequest(ae.Message);
+            } catch (Exception e) {
+                _logger.LogError(e, "Error (500)");
+                return StatusCode(500, e.Message);
+            }
+        }
         #endregion
 
         #region Audit
