@@ -48,7 +48,35 @@ namespace MyResumeAPI.Controllers {
         #endregion
 
         #region Create
-        //TODO: HttpCreate
+        /// <summary>
+        /// Creates a new Person Entity using the Person Data supplied. 
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns>The Id of the new record as a string.</returns>
+        [HttpPost("Create")]
+        [SwaggerResponse(200, "Success", typeof(string))]
+        [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
+        [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
+        public async Task<IActionResult> Create([FromBody] Resume resume) {
+            _logger.LogInformation("Begin : Create Resume", resume);
+            if (resume is null) {
+                var msg = "The resume parameter cannot be null.";
+                _logger.LogError($"Bad Request - {msg}");
+                return BadRequest(msg);
+            } try {
+                var resumeEntity = new ResumeEntity();
+                resumeEntity.Resume = resume;
+                var ret = await _resumeRepo.AddItemAsync(resumeEntity);
+                _logger.LogInformation("End : Create Institution - Success", ret);
+                return Ok(ret);
+            } catch (ArgumentException ae) {
+                _logger.LogError(ae, "ArgumentException");
+                return BadRequest(ae.Message);
+            } catch (Exception e) {
+                _logger.LogError(e, "Error (500)");
+                return StatusCode(500, e.Message);
+            }
+        }
         #endregion
 
         #region Read
@@ -87,7 +115,7 @@ namespace MyResumeAPI.Controllers {
         /// Gets a List of all Resume Entities currently stored in the system.
         /// </summary>
         /// <returns>A Listing of all existing Resume Entity records or an Error.</returns>
-        [HttpGet("all")]
+        [HttpGet("All")]
         [SwaggerResponse(200, "Success", typeof(List<ResumeResponse>))]
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]

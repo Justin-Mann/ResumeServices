@@ -43,6 +43,7 @@ namespace MyResumeAPI.Extensions {
                                     Phone = "406.498.7390",
                                     Fax = null
                                 },
+                                Profession = "Full Stack Web Application Developer",
                                 ImageRef = "https://jemstorageaccount.blob.core.windows.net/jemimages/me.e.png",
                                 LinkedInUrl = "https://www.linkedin.com/in/justin-mann-b3822075/",
                                 WebsiteURL = "https://406jem.us",

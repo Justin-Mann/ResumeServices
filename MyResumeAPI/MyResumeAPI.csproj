@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Request\" />
+    <ProjectReference Include="..\ResumeCore\ResumeCore.csproj" />
+    <ProjectReference Include="..\ResumeInfastructure\ResumeInfastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ResumeCore\ResumeCore.csproj" />
-    <ProjectReference Include="..\ResumeInfastructure\ResumeInfastructure.csproj" />
+    <Folder Include="Models\Request\" />
   </ItemGroup>
 
 </Project>

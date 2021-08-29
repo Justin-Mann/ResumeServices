@@ -56,7 +56,6 @@ namespace PersonAPI.Controllers {
         /// <returns>The Id of the new record as a string.</returns>
         [HttpPost("create")]
         [SwaggerResponse(200, "Success", typeof(string))]
-        [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Create([FromBody] Person person) {
