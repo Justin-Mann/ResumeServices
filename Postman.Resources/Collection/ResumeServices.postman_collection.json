@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "7cac9c11-8de6-46da-bd98-58325ce803a3",
+		"name": "ResumeServices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ResumeService",
+			"item": [
+				{
+					"name": "Resume/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ResumeService}}/{{ThisResumeId}}",
+							"host": [
+								"{{ResumeService}}"
+							],
+							"path": [
+								"{{ThisResumeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume/All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ResumeService}}/all",
+							"host": [
+								"{{ResumeService}}"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"ThisResumeId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"documentVersion\": {\r\n    \"major\": 0,\r\n    \"minor\": 1\r\n  },\r\n  \"person\": {\r\n    \"fName\": \"me\",\r\n    \"mName\": \"i\",\r\n    \"lName\": \"legion\",\r\n    \"profession\": \"existing\",\r\n    \"imageRef\": null,\r\n    \"contactInfo\": {\r\n      \"line1\": \"string\",\r\n      \"line2\": \"string\",\r\n      \"city\": \"string\",\r\n      \"state\": \"string\",\r\n      \"zip\": \"string\",\r\n      \"phone\": \"string\",\r\n      \"fax\": \"string\",\r\n      \"email\": \"string\"\r\n    },\r\n    \"websiteURL\": \"https://www.google.com\",\r\n    \"linkedInUrl\": \"https://linkedin.com\",\r\n    \"gitHubUrl\": \"https://github.com\"\r\n  },\r\n  \"jobTitle\": \"Chief logistical agent in charge of beverage allocation\",\r\n  \"objectiveStatement\": \"got the coffee\",\r\n  \"skillGroups\": [\r\n    {\r\n      \"name\": \"movement\",\r\n      \"skills\": [\r\n        {\r\n          \"name\": \"agility\",\r\n          \"competence\": 8\r\n        },\r\n        {\r\n          \"name\": \"constitution\",\r\n          \"competence\": 6\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"educationHistory\": [\r\n    {\r\n      \"startDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"endDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"institution\": {\r\n        \"name\": \"the mean streets\",\r\n        \"location\": \"Philips County Montana\",\r\n        \"type\": \"real\"\r\n      },\r\n      \"areasOfStudy\": [\r\n        \"procurements and redistribution\"\r\n      ],\r\n      \"completedDegrees\": [\r\n        {\r\n          \"name\": \"none\",\r\n          \"startDate\": \"2021-08-29T19:50:45.335Z\",\r\n          \"endDate\": \"2021-08-29T19:50:45.335Z\",\r\n          \"detail\": \"many areas of study, but found it difficult to concentrate on one decipline for very long.\"\r\n        }\r\n      ],\r\n      \"partials\": []\r\n    }\r\n  ],\r\n  \"workHistory\": [\r\n    {\r\n      \"startDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"endDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"employer\": {\r\n        \"name\": \"john\",\r\n        \"location\": \"under the bridge\",\r\n        \"type\": \"solicitor\"\r\n      },\r\n      \"client\": {\r\n        \"name\": \"public\",\r\n        \"location\": \"the mean streets\",\r\n        \"type\": \"mostly annoyed\"\r\n      },\r\n      \"jobTitle\": \"Flier Boy\",\r\n      \"jobType\": \"solicitor\",\r\n      \"descriptionOfDuties\": \"solicit people with random fliers I am paid to hand out.\",\r\n      \"reasonForLeaving\": \"ran out of fliers.\",\r\n      \"references\": [\r\n        {\r\n          \"fName\": \"pete\"\r\n        }\r\n      ],\r\n      \"completedProjects\": [\r\n        \"handed out all my fliers.\"\r\n      ]\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ResumeService}}/Create",
+							"host": [
+								"{{ResumeService}}"
+							],
+							"path": [
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"documentVersion\": {\r\n    \"major\": 0,\r\n    \"minor\": 1\r\n  },\r\n  \"person\": {\r\n    \"fName\": \"me\",\r\n    \"mName\": \"i\",\r\n    \"lName\": \"legion\",\r\n    \"profession\": \"existing\",\r\n    \"imageRef\": null,\r\n    \"contactInfo\": {\r\n      \"line1\": \"string\",\r\n      \"line2\": \"string\",\r\n      \"city\": \"string\",\r\n      \"state\": \"string\",\r\n      \"zip\": \"string\",\r\n      \"phone\": \"string\",\r\n      \"fax\": \"string\",\r\n      \"email\": \"string\"\r\n    },\r\n    \"websiteURL\": \"https://www.google.com\",\r\n    \"linkedInUrl\": \"https://linkedin.com\",\r\n    \"gitHubUrl\": \"https://github.com\"\r\n  },\r\n  \"jobTitle\": \"Chief logistical agent in charge of beverage allocation\",\r\n  \"objectiveStatement\": \"got the coffee\",\r\n  \"skillGroups\": [\r\n    {\r\n      \"name\": \"movement\",\r\n      \"skills\": [\r\n        {\r\n          \"name\": \"agility\",\r\n          \"competence\": 8\r\n        },\r\n        {\r\n          \"name\": \"constitution\",\r\n          \"competence\": 6\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"educationHistory\": [\r\n    {\r\n      \"startDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"endDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"institution\": {\r\n        \"name\": \"the mean streets\",\r\n        \"location\": \"Philips County Montana\",\r\n        \"type\": \"real\"\r\n      },\r\n      \"areasOfStudy\": [\r\n        \"procurements and redistribution\"\r\n      ],\r\n      \"completedDegrees\": [\r\n        {\r\n          \"name\": \"none\",\r\n          \"startDate\": \"2021-08-29T19:50:45.335Z\",\r\n          \"endDate\": \"2021-08-29T19:50:45.335Z\",\r\n          \"detail\": \"many areas of study, but found it difficult to concentrate on one decipline for very long.\"\r\n        }\r\n      ],\r\n      \"partials\": []\r\n    }\r\n  ],\r\n  \"workHistory\": [\r\n    {\r\n      \"startDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"endDate\": \"2021-08-29T19:50:45.335Z\",\r\n      \"employer\": {\r\n        \"name\": \"john\",\r\n        \"location\": \"under the bridge\",\r\n        \"type\": \"solicitor\"\r\n      },\r\n      \"client\": {\r\n        \"name\": \"public\",\r\n        \"location\": \"the mean streets\",\r\n        \"type\": \"mostly annoyed\"\r\n      },\r\n      \"jobTitle\": \"Flier Boy\",\r\n      \"jobType\": \"solicitor\",\r\n      \"descriptionOfDuties\": \"solicit people with random fliers I am paid to hand out.\",\r\n      \"reasonForLeaving\": \"ran out of fliers.\",\r\n      \"references\": [\r\n        {\r\n          \"fName\": \"pete\"\r\n        }\r\n      ],\r\n      \"completedProjects\": [\r\n        \"handed out all my fliers.\"\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ResumeService}}/{{ThisResumeId}}",
+							"host": [
+								"{{ResumeService}}"
+							],
+							"path": [
+								"{{ThisResumeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume/{id}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"op\":\"replace\",\r\n    \"path\":\"/documentVersion/minor\",\r\n    \"value\": \"2\"\r\n  },\r\n  {\r\n      \"op\":\"replace\",\r\n      \"path\":\"/jobTitle\",\r\n      \"value\":\"directions on using jsonPatch at... \"\r\n  },\r\n  {\r\n      \"op\":\"replace\",\r\n      \"path\":\"/objectiveStatement\",\r\n      \"value\":\"https://docs.microsoft.com/en-us/aspnet/core/web-api/jsonpatch?view=aspnetcore-2.2#json-patch-example-1\"\r\n  },\r\n  {\r\n      \"op\":\"remove\",\r\n      \"path\":\"/person\"\r\n  },\r\n  {\r\n      \"op\":\"remove\",\r\n      \"path\":\"/skillGroup\"\r\n  },\r\n  {\r\n      \"op\":\"remove\",\r\n      \"path\":\"/educationHistory\"\r\n  },\r\n  {\r\n      \"op\":\"remove\",\r\n      \"path\":\"/workHistory\"\r\n  },\r\n  {\r\n      \"op\":\"remove\",\r\n      \"path\":\"/skillGroups\"\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ResumeService}}/{{ThisResumeId}}",
+							"host": [
+								"{{ResumeService}}"
+							],
+							"path": [
+								"{{ThisResumeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resume/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ResumeService}}/{{ThisResumeId}}",
+							"host": [
+								"{{ResumeService}}"
+							],
+							"path": [
+								"{{ThisResumeId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PersonService",
+			"item": []
+		},
+		{
+			"name": "InstitutionService",
+			"item": []
+		}
+	]
+}
