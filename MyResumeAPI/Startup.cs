@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Identity.Web;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using MyResumeAPI.Config;
 using MyResumeAPI.Extensions;
 using ResumeInfastructure.CosmosDbData.Extension;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace MyResumeAPI {
     public class Startup {
@@ -25,6 +27,11 @@ namespace MyResumeAPI {
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyResumeAPI", Version = "v1" });
             });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+           .AddMicrosoftIdentityWebApi(options => {
+               Configuration.Bind("AzureAdB2C", options);
+               options.TokenValidationParameters.NameClaimType = "name";
+           }, options => { Configuration.Bind("AzureAdB2C", options); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +50,8 @@ namespace MyResumeAPI {
                       .WithHeaders(HeaderNames.ContentType));
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
