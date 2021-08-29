@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyResumeAPI.Models;
@@ -143,7 +144,83 @@ namespace MyResumeAPI.Controllers {
         #endregion
 
         #region Update
-        //TODO: HttpPost
+        /// <summary>
+        /// Update an existing Resume Entity in the system using HttpPut to perform an update.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="resume"></param>
+        /// <returns>The updated Resume Entity record or an Error.</returns>
+        [HttpPut("{id:guid}")]
+        [SwaggerResponse(200, "Success", typeof(ResumeResponse))]
+        [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
+        [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
+        [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] Resume resume) {
+            _logger.LogInformation("Begin : Update Person w/ PUT", new { id, resume });
+            if (resume is null) {
+                var msg = "The resume parameter cannot be null.";
+                _logger.LogError($"Bad Request - {msg}");
+                return BadRequest(msg);
+            } try {
+                var item = await _resumeRepo.GetItemAsync(id.ToString());
+                if (item is null) {
+                    var msg = $"The resume with id({id}) was not found.";
+                    _logger.LogWarning($"NotFound - {msg}");
+                    return NotFound(msg);
+                }
+                item.Resume = resume;
+                await _resumeRepo.UpdateItemAsync(id.ToString(), item);
+                var result = await _resumeRepo.GetItemAsync(id.ToString());
+                var ret = _mapper.Map<ResumeResponse>(result);
+                _logger.LogInformation("End : Update Resume w/ PUT - Success", ret);
+                return Ok(ret);
+            } catch (ArgumentException ae) {
+                _logger.LogError(ae, "BadRequest");
+                return BadRequest(ae.Message);
+            } catch (Exception e) {
+                _logger.LogError(e, "Error (500)");
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Update an existing Resume Entity in the system using HttpPatch to perform a soft update.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="resume"></param>
+        /// <returns>The updated Resume Entity record or an Error.</returns>
+        [HttpPatch("{id:guid}")]
+        [SwaggerResponse(200, "Success", typeof(ResumeResponse))]
+        [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
+        [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
+        [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
+        public async Task<IActionResult> SoftUpdate([FromRoute] Guid id, [FromBody] JsonPatchDocument<Resume> resume) {
+            _logger.LogInformation("Begin : Update Person w/ PATCH", new { id, resume });
+            if (resume is null) {
+                var msg = "The resume parameter cannot be null.";
+                _logger.LogError($"Bad Request - {msg}");
+                return BadRequest(msg);
+            } try {
+                var item = await _resumeRepo.GetItemAsync(id.ToString());
+                if (item is null) {
+                    var msg = $"The resume with id({id}) was not found.";
+                    _logger.LogWarning($"NotFound - {msg}");
+                    return NotFound(msg);
+                }
+                resume.ApplyTo(item.Resume, ModelState);
+                await _resumeRepo.UpdateItemAsync(id.ToString(), item);
+                var result = await _resumeRepo.GetItemAsync(id.ToString());
+                var ret = _mapper.Map<ResumeResponse>(result);
+                _logger.LogInformation("End : Update Resume w/ PATCH - Success", ret);
+                return Ok(ret);
+            } catch (ArgumentException ae) {
+                _logger.LogError(ae, "BadRequest");
+                return BadRequest(ae.Message);
+            } catch (Exception e) {
+                _logger.LogError(e, "Error (500)");
+                return StatusCode(500, e.Message);
+            }
+        }
         #endregion
 
         #region Delete

@@ -174,7 +174,7 @@ namespace PersonAPI.Controllers {
                 await _personRepo.UpdateItemAsync(id.ToString(), item);
                 var result = await _personRepo.GetItemAsync(id.ToString());
                 var ret = _mapper.Map<PersonResponse>(result);
-                _logger.LogInformation("End : Update Institution w/ PUT - Success", ret);
+                _logger.LogInformation("End : Update Person w/ PUT - Success", ret);
                 return Ok(ret);
             } catch ( ArgumentException ae ) {
                 _logger.LogError(ae, "BadRequest");
@@ -245,7 +245,7 @@ namespace PersonAPI.Controllers {
                     _logger.LogWarning($"NotFound - {msg}");
                     return NotFound(msg);
                 }
-                _logger.LogInformation("End : Remove Institution - Success", id);
+                _logger.LogInformation("End : Remove Person - Success", id);
                 return Ok();
             } catch ( ArgumentException ae ) {
                 _logger.LogError(ae, "BadRequest");
