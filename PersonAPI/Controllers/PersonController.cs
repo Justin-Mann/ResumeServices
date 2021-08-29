@@ -70,7 +70,7 @@ namespace PersonAPI.Controllers {
                 personEntity.Person = person;
                 var ret = await _personRepo.AddItemAsync(personEntity);
                 _logger.LogInformation("End : Create Institution - Success", ret);
-                return Ok(ret);
+                return Ok(new { Id = ret } );
             } catch( ArgumentException ae ) {
                 _logger.LogError(ae, "ArgumentException");
                 return BadRequest( ae.Message );

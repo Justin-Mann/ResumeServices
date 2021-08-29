@@ -71,7 +71,7 @@ namespace InstitutionAPI.Controllers {
                 institutionEntity.Institution = institution;
                 var ret = await _institutionRepo.AddItemAsync(institutionEntity);
                 _logger.LogInformation("End : Create Institution - Success", ret);
-                return Ok(ret);
+                return Ok(new { Id = ret });
             } catch ( ArgumentException ae ) {
                 _logger.LogError(ae, "ArgumentException");
                 return BadRequest(ae.Message);

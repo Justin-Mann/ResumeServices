@@ -69,7 +69,7 @@ namespace MyResumeAPI.Controllers {
                 resumeEntity.Resume = resume;
                 var ret = await _resumeRepo.AddItemAsync(resumeEntity);
                 _logger.LogInformation("End : Create Institution - Success", ret);
-                return Ok(ret);
+                return Ok(new { Id = ret });
             } catch (ArgumentException ae) {
                 _logger.LogError(ae, "ArgumentException");
                 return BadRequest(ae.Message);
@@ -229,7 +229,7 @@ namespace MyResumeAPI.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Ok Response or Error.</returns>
-        [HttpDelete("remove/{id:guid}")]
+        [HttpDelete("{id:guid}")]
         [SwaggerResponse(200, "Success")]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
