@@ -19,11 +19,8 @@ namespace MyResumeAPI {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-
             services.SetupCosmosDb(Configuration);
-
             services.AddAutoMapper(typeof(Startup));
-
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyResumeAPI", Version = "v1" });
@@ -41,7 +38,7 @@ namespace MyResumeAPI {
             }
 
             app.UseCors(policy =>
-                policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
+                policy.AllowAnyOrigin()//.WithOrigins("http://localhost:5000", "https://localhost:5001")
                       .AllowAnyMethod()
                       .WithHeaders(HeaderNames.ContentType));
 

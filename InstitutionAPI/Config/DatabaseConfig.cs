@@ -20,7 +20,7 @@ namespace InstitutionAPI.Config {
             CosmosDbSettings cosmosDbConfig = configuration.GetSection("ConnectionStrings:CosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
-                                 cosmosDbConfig.PrimaryKey,
+                                 string.IsNullOrEmpty(cosmosDbConfig.PrimaryKey) ? configuration["ResumeServices:ConnectionStrings:CosmosDb:PrimaryKey"] : cosmosDbConfig.PrimaryKey,
                                  cosmosDbConfig.DatabaseName,
                                  cosmosDbConfig.Containers);
 
