@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 using MyResumeAPI.Models;
 using MyResumeAPI.Models.Response;
 using ResumeCore.Interface;
@@ -15,9 +17,13 @@ namespace MyResumeAPI.Controllers {
     /// <summary>
     /// Controller for the My Resume API w/ Simple Read Operations.  This acts as a Gateway API, as well as an Application API for the Resume Services.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ResumeController: ControllerBase {
+        static readonly string[] readUser = new string[] { "Reader", "Contributor" };
+        static readonly string[] readWriteUser = new string[] { "Contributor" };
+
         #region Members
         /// <summary>
         /// Resume Repository derived from Generic Cosmos Repository defined in ResumeInfastructure PCL
@@ -59,6 +65,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Create([FromBody] Resume resume) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Create Resume", resume);
             if (resume is null) {
                 var msg = "The resume parameter cannot be null.";
@@ -92,6 +99,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetResumeById(Guid id) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readUser);
             _logger.LogInformation("Begin : Get Institution By Id", id);
             try {
                 var result = await _resumeRepo.GetItemAsync(id.ToString());
@@ -121,6 +129,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetAllResumesDetailed() {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readUser);
             _logger.LogInformation("Begin : Get All Resumes");
             try {
                 string query = @$"SELECT * FROM c";
@@ -156,6 +165,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] Resume resume) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Update Person w/ PUT", new { id, resume });
             if (resume is null) {
                 var msg = "The resume parameter cannot be null.";
@@ -195,6 +205,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> SoftUpdate([FromRoute] Guid id, [FromBody] JsonPatchDocument<Resume> resume) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Update Person w/ PATCH", new { id, resume });
             if (resume is null) {
                 var msg = "The resume parameter cannot be null.";
@@ -235,6 +246,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Remove([FromRoute] Guid id) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Remove Resume", id);
             try {
                 if (!await _resumeRepo.DeleteItemAsync(id.ToString())) {

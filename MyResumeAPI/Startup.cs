@@ -10,6 +10,8 @@ using MyResumeAPI.Config;
 using MyResumeAPI.Extensions;
 using ResumeInfastructure.CosmosDbData.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace MyResumeAPI {
     public class Startup {
@@ -23,16 +25,17 @@ namespace MyResumeAPI {
         public void ConfigureServices(IServiceCollection services) {
             services.SetupCosmosDb(Configuration);
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+            services.AddControllers(options => {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .RequireClaim("email")
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddNewtonsoftJson();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyResumeAPI", Version = "v1" });
             });
-            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
-           // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-           //.AddMicrosoftIdentityWebApi(options => {
-           //    Configuration.Bind("AzureAdB2C", options);
-           //    options.TokenValidationParameters.NameClaimType = "name";
-           //}, options => { Configuration.Bind("AzureAdB2C", options); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,20 +47,14 @@ namespace MyResumeAPI {
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyResumeAPI v1"));
             }
-
             app.UseCors(policy =>
                 policy.AllowAnyOrigin()
                       .AllowAnyMethod()
                       .WithHeaders(HeaderNames.ContentType));
-
             app.UseHttpsRedirection();
-
-            app.UseAuthentication();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
