@@ -31,12 +31,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ResumeService}}/all",
+							"raw": "{{ResumeService}}/All",
 							"host": [
 								"{{ResumeService}}"
 							],
 							"path": [
-								"all"
+								"All"
 							]
 						}
 					},
@@ -153,11 +153,295 @@
 		},
 		{
 			"name": "PersonService",
-			"item": []
+			"item": [
+				{
+					"name": "Person/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PersonService}}/{{ThisPersonId}}",
+							"host": [
+								"{{PersonService}}"
+							],
+							"path": [
+								"{{ThisPersonId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Person/All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PersonService}}/All",
+							"host": [
+								"{{PersonService}}"
+							],
+							"path": [
+								"All"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"ThisPersonId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fName\": \"john\",\r\n  \"mName\": \"g\",\r\n  \"lName\": \"lock\",\r\n  \"profession\": \"island creeper\",\r\n  \"imageRef\": \"https://pm1.narvii.com/6445/0a67a8082d23215f3998e476370f3b416a55877f_hq.jpg\",\r\n  \"contactInfo\": {\r\n    \"line1\": \"100 star lane\",\r\n    \"line2\": \"apt 210\",\r\n    \"city\": \"hollyland\",\r\n    \"state\": \"neverland\",\r\n    \"zip\": \"00010-0100\",\r\n    \"phone\": \"1234567890\",\r\n    \"fax\": \"0987654321\",\r\n    \"email\": \"john@island.com\"\r\n  },\r\n  \"websiteURL\": \"http://john.lostisland.com\",\r\n  \"linkedInUrl\": \"http://johnlock/linkedin.com\",\r\n  \"gitHubUrl\": \"https://johnlock/github.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PersonService}}/Create",
+							"host": [
+								"{{PersonService}}"
+							],
+							"path": [
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Person/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fName\": \"john\",\r\n  \"mName\": \"g\",\r\n  \"lName\": \"lock\",\r\n  \"profession\": \"island creeper\",\r\n  \"imageRef\": \"https://pm1.narvii.com/6445/0a67a8082d23215f3998e476370f3b416a55877f_hq.jpg\",\r\n  \"contactInfo\": {\r\n    \"line1\": \"100 star lane\",\r\n    \"line2\": \"apt 210\",\r\n    \"city\": \"hollyland\",\r\n    \"state\": \"neverland\",\r\n    \"zip\": \"00010-0100\",\r\n    \"phone\": \"1234567890\",\r\n    \"fax\": \"0987654321\",\r\n    \"email\": \"john@island.com\"\r\n  },\r\n  \"websiteURL\": \"http://john.lostisland.com\",\r\n  \"linkedInUrl\": \"http://johnlock/linkedin.com\",\r\n  \"gitHubUrl\": \"https://johnlock/github.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PersonService}}/{{ThisPersonId}}",
+							"host": [
+								"{{PersonService}}"
+							],
+							"path": [
+								"{{ThisPersonId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Person/{id}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"op\":\"replace\",\r\n    \"path\":\"/mName\",\r\n    \"value\": \"og\"\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PersonService}}/{{ThisPersonId}}",
+							"host": [
+								"{{PersonService}}"
+							],
+							"path": [
+								"{{ThisPersonId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Person/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PersonService}}/{{ThisPersonId}}",
+							"host": [
+								"{{PersonService}}"
+							],
+							"path": [
+								"{{ThisPersonId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "InstitutionService",
-			"item": []
+			"item": [
+				{
+					"name": "Institution/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InstitutionService}}/{{ThisInstitutionId}}",
+							"host": [
+								"{{InstitutionService}}"
+							],
+							"path": [
+								"{{ThisInstitutionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Institution/All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InstitutionService}}/All",
+							"host": [
+								"{{InstitutionService}}"
+							],
+							"path": [
+								"All"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"ThisInstitutionId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"learning co\",\r\n  \"location\": \"the clouds\",\r\n  \"type\": \"online learning platform\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InstitutionService}}/Create",
+							"host": [
+								"{{InstitutionService}}"
+							],
+							"path": [
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Institution/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"learning co\",\r\n  \"location\": \"the clouds\",\r\n  \"type\": \"online learning platform\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InstitutionService}}/{{ThisInstitutionId}}",
+							"host": [
+								"{{InstitutionService}}"
+							],
+							"path": [
+								"{{ThisInstitutionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Institution/{id}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"op\":\"replace\",\r\n    \"path\":\"/location\",\r\n    \"value\": \"the interwebs\"\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InstitutionService}}/{{ThisInstitutionId}}",
+							"host": [
+								"{{InstitutionService}}"
+							],
+							"path": [
+								"{{ThisInstitutionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Institution/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{InstitutionService}}/{{ThisInstitutionId}}",
+							"host": [
+								"{{InstitutionService}}"
+							],
+							"path": [
+								"{{ThisInstitutionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
