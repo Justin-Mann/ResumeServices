@@ -11,6 +11,61 @@
 				{
 					"name": "Resume/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5000",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "b0cc8d13-bdf9-43f2-9307-5cc9fd81893f",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -28,6 +83,61 @@
 				{
 					"name": "Resume/All",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5000",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "b0cc8d13-bdf9-43f2-9307-5cc9fd81893f",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -57,6 +167,61 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5000",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "b0cc8d13-bdf9-43f2-9307-5cc9fd81893f",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -83,6 +248,61 @@
 				{
 					"name": "Resume/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5000",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "b0cc8d13-bdf9-43f2-9307-5cc9fd81893f",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -109,6 +329,61 @@
 				{
 					"name": "Resume/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5000",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "b0cc8d13-bdf9-43f2-9307-5cc9fd81893f",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -135,6 +410,61 @@
 				{
 					"name": "Resume/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5000",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "b0cc8d13-bdf9-43f2-9307-5cc9fd81893f",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -149,6 +479,101 @@
 					},
 					"response": []
 				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "scope",
+						"value": "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/Contributor",
+						"type": "string"
+					},
+					{
+						"key": "useBrowser",
+						"value": false,
+						"type": "boolean"
+					},
+					{
+						"key": "grant_type",
+						"value": "authorization_code",
+						"type": "string"
+					},
+					{
+						"key": "password",
+						"value": "Zaju7607",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "test@justinmannmailgmail.onmicrosoft.com",
+						"type": "string"
+					},
+					{
+						"key": "redirect_uri",
+						"value": "http://localhost:1234",
+						"type": "string"
+					},
+					{
+						"key": "clientId",
+						"value": "954ad7f8-2cdf-4722-a000-1ccd65029e1e",
+						"type": "string"
+					},
+					{
+						"key": "clientSecret",
+						"value": "vLKla0.aeLKrImu263u.HcB6FP~_BTCnke",
+						"type": "string"
+					},
+					{
+						"key": "accessTokenUrl",
+						"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+						"type": "string"
+					},
+					{
+						"key": "authUrl",
+						"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+						"type": "string"
+					},
+					{
+						"key": "tokenName",
+						"value": "jwttoken",
+						"type": "string"
+					},
+					{
+						"key": "challengeAlgorithm",
+						"value": "S256",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "client_authentication",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -157,6 +582,61 @@
 				{
 					"name": "Person/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://415d57b7-67cd-45ee-9686-d78ae981c5e9/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "415d57b7-67cd-45ee-9686-d78ae981c5e9",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5010",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -174,6 +654,61 @@
 				{
 					"name": "Person/All",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://415d57b7-67cd-45ee-9686-d78ae981c5e9/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "415d57b7-67cd-45ee-9686-d78ae981c5e9",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5010",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -203,6 +738,61 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://415d57b7-67cd-45ee-9686-d78ae981c5e9/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "415d57b7-67cd-45ee-9686-d78ae981c5e9",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5010",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -229,6 +819,61 @@
 				{
 					"name": "Person/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://415d57b7-67cd-45ee-9686-d78ae981c5e9/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "415d57b7-67cd-45ee-9686-d78ae981c5e9",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5010",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -255,6 +900,61 @@
 				{
 					"name": "Person/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://415d57b7-67cd-45ee-9686-d78ae981c5e9/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "415d57b7-67cd-45ee-9686-d78ae981c5e9",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5010",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -281,6 +981,61 @@
 				{
 					"name": "Person/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://415d57b7-67cd-45ee-9686-d78ae981c5e9/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "415d57b7-67cd-45ee-9686-d78ae981c5e9",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5010",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -303,6 +1058,61 @@
 				{
 					"name": "Institution/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://ba116106-e770-484a-877b-1a9ca9149390/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "ba116106-e770-484a-877b-1a9ca9149390",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5020",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -320,6 +1130,61 @@
 				{
 					"name": "Institution/All",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://ba116106-e770-484a-877b-1a9ca9149390/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "ba116106-e770-484a-877b-1a9ca9149390",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5020",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -349,6 +1214,61 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://ba116106-e770-484a-877b-1a9ca9149390/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "ba116106-e770-484a-877b-1a9ca9149390",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5020",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -375,6 +1295,61 @@
 				{
 					"name": "Institution/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://ba116106-e770-484a-877b-1a9ca9149390/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "ba116106-e770-484a-877b-1a9ca9149390",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5020",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -401,6 +1376,61 @@
 				{
 					"name": "Institution/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://ba116106-e770-484a-877b-1a9ca9149390/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "ba116106-e770-484a-877b-1a9ca9149390",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5020",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -427,6 +1457,61 @@
 				{
 					"name": "Institution/{id}",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "api://ba116106-e770-484a-877b-1a9ca9149390/Contributor",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "ba116106-e770-484a-877b-1a9ca9149390",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:5020",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "implicit",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "JL3~w94XeZi8qon434r.-s~-xKeQNXuZM_",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://login.microsoftonline.com/3a3d6dc5-376e-46d3-8207-0bccb8e87838/oauth2/v2.0/authorize",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "jwttoken",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {

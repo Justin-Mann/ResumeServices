@@ -247,7 +247,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Remove([FromRoute] Guid id) {
-            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Remove Resume", id);
             try {
                 if (!await _resumeRepo.DeleteItemAsync(id.ToString())) {

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 using PersonAPI.Models;
 using PersonAPI.Models.Response;
 using ResumeCore.Interface;
@@ -15,9 +17,14 @@ namespace PersonAPI.Controllers {
     /// <summary>
     /// Controller for the Person Service API w/ CRUD Operations.  This acts as an API for the Person Microservice.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class PersonController: ControllerBase {
+        static readonly string[] readUserOnly = new string[] { "Reader" };
+        static readonly string[] writeUserOnly = new string[] { "Contributor" };
+        static readonly string[] readWriteUser = new string[] { "Reader", "Contributor" };
+
         #region Members
         /// <summary>
         /// Person Repository derived from Generic Cosmos Repository defined in ResumeInfastructure PCL
@@ -59,6 +66,7 @@ namespace PersonAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Create([FromBody] Person person) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Create Person", person);
             if ( person is null ) {
                 var msg = "The person parameter cannot be null.";
@@ -93,6 +101,7 @@ namespace PersonAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetById([FromRoute] Guid id) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Get Person By Id", id);
             try {
                 var result = await _personRepo.GetItemAsync(id.ToString());
@@ -122,6 +131,7 @@ namespace PersonAPI.Controllers {
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetAll() {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Get All People");
             try {
                 string query = @$"SELECT * FROM c";
@@ -157,6 +167,7 @@ namespace PersonAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] Person person) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Update Person w/ PUT", new { id, person });
             if ( person is null ) {
                 var msg = "The person parameter cannot be null.";
@@ -197,6 +208,7 @@ namespace PersonAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> SoftUpdate([FromRoute] Guid id, [FromBody] JsonPatchDocument<Person> person) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Update Person w/ PATCH", new { id, person }); 
             if ( person is null ) {
                 var msg = "The person parameter cannot be null.";
@@ -238,6 +250,7 @@ namespace PersonAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Remove([FromRoute] Guid id) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Remove Person", id);
             try {
                 if ( ! await _personRepo.DeleteItemAsync(id.ToString()) ) {

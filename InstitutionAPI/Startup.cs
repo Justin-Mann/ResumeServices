@@ -1,10 +1,13 @@
 using InstitutionAPI.Config;
 using InstitutionAPI.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Identity.Web;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using ResumeInfastructure.CosmosDbData.Extension;
@@ -19,12 +22,16 @@ namespace InstitutionAPI {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-
             services.SetupCosmosDb(Configuration);
-
             services.AddAutoMapper(typeof(Startup));
-
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+            services.AddControllers(options => {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .RequireClaim("name")
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddNewtonsoftJson();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InstitutionAPI", Version = "v1" });
             });
@@ -39,18 +46,14 @@ namespace InstitutionAPI {
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InstitutionAPI v1"));
             }
-
             app.UseCors(policy =>
-                policy.AllowAnyOrigin()//.WithOrigins("http://localhost:5000", "https://localhost:5001")
+                policy.AllowAnyOrigin()
                       .AllowAnyMethod()
                       .WithHeaders(HeaderNames.ContentType));
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });

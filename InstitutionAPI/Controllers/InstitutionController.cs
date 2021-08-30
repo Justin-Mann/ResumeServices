@@ -10,14 +10,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using InstitutionAPI.Models.Response;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Identity.Web.Resource;
 
 namespace InstitutionAPI.Controllers {
     /// <summary>
     /// Controller for the Institution Service API w/ CRUD Operations.  This acts as an API for the Institution Microservice.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class InstitutionController: ControllerBase {
+        static readonly string[] readUserOnly = new string[] { "Reader" };
+        static readonly string[] writeUserOnly = new string[] { "Contributor" };
+        static readonly string[] readWriteUser = new string[] { "Reader", "Contributor" };
+
         #region Members
         /// <summary>
         /// Institution Repository derived from Generic Cosmos Repository defined in ResumeInfastructure PCL
@@ -60,6 +67,7 @@ namespace InstitutionAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Create([FromBody] Institution institution) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Create Institution", institution);
             if ( institution is null ) {
                 var msg = "The institution parameter cannot be null.";
@@ -94,6 +102,7 @@ namespace InstitutionAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetById([FromRoute] Guid id) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Get Institution By Id", id);
             try {
                 var result = await _institutionRepo.GetItemAsync(id.ToString());
@@ -123,6 +132,7 @@ namespace InstitutionAPI.Controllers {
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetAll() {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Get All Institutions");
             try {
                 string query = @$"SELECT * FROM c";
@@ -158,6 +168,7 @@ namespace InstitutionAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] Institution institution) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Update Institution w/ PUT", new { id, institution });
             if ( institution is null ) {
                 var msg = "The institution parameter cannot be null.";
@@ -198,6 +209,7 @@ namespace InstitutionAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> SoftUpdate([FromRoute] Guid id, [FromBody] JsonPatchDocument<Institution> institution) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Update Institution w/ PATCH", new { id, institution });
             if ( institution is null ) {
                 var msg = "The institution parameter cannot be null.";
@@ -239,6 +251,7 @@ namespace InstitutionAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Remove([FromRoute] Guid id) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Remove Institution", id);
             try {
                 if ( ! await _institutionRepo.DeleteItemAsync(id.ToString()) ) {
