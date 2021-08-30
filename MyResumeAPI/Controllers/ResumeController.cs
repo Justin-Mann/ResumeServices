@@ -21,8 +21,9 @@ namespace MyResumeAPI.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class ResumeController: ControllerBase {
-        static readonly string[] readUser = new string[] { "Reader", "Contributor" };
-        static readonly string[] readWriteUser = new string[] { "Contributor" };
+        static readonly string[] readUserOnly = new string[] { "Reader" };
+        static readonly string[] writeUserOnly = new string[] { "Contributor" };
+        static readonly string[] readWriteUser = new string[] { "Reader", "Contributor" };
 
         #region Members
         /// <summary>
@@ -99,7 +100,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetResumeById(Guid id) {
-            HttpContext.VerifyUserHasAnyAcceptedScope(readUser);
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Get Institution By Id", id);
             try {
                 var result = await _resumeRepo.GetItemAsync(id.ToString());
@@ -129,7 +130,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetAllResumesDetailed() {
-            HttpContext.VerifyUserHasAnyAcceptedScope(readUser);
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
             _logger.LogInformation("Begin : Get All Resumes");
             try {
                 string query = @$"SELECT * FROM c";
@@ -165,7 +166,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] Resume resume) {
-            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Update Person w/ PUT", new { id, resume });
             if (resume is null) {
                 var msg = "The resume parameter cannot be null.";
@@ -205,7 +206,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> SoftUpdate([FromRoute] Guid id, [FromBody] JsonPatchDocument<Resume> resume) {
-            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
+            HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Update Person w/ PATCH", new { id, resume });
             if (resume is null) {
                 var msg = "The resume parameter cannot be null.";

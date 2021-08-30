@@ -29,7 +29,7 @@ namespace MyResumeAPI {
             services.AddControllers(options => {
                 var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
-                    .RequireClaim("email")
+                    .RequireClaim("name")
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddNewtonsoftJson();
