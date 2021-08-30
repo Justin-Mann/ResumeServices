@@ -17,7 +17,7 @@ namespace InstitutionAPI.Config {
         /// <param name="configuration"></param>
         public static void SetupCosmosDb(this IServiceCollection services, IConfiguration configuration) {
             // Bind database-related bindings
-            CosmosDbSettings cosmosDbConfig = configuration.GetSection("ConnectionStrings:CosmosDB").Get<CosmosDbSettings>();
+            CosmosDbSettings cosmosDbConfig = configuration.GetSection("CosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
                                  string.IsNullOrEmpty(cosmosDbConfig.PrimaryKey) ? configuration["ResumeServices:ConnectionStrings:CosmosDb:PrimaryKey"] : cosmosDbConfig.PrimaryKey,

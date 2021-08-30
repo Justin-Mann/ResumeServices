@@ -18,7 +18,7 @@ namespace MyResumeAPI.Config {
         public static void SetupCosmosDb(this IServiceCollection services, IConfiguration configuration) {
             var t = configuration.GetValue<string>("ResumeServices:ConnectionStrings:CosmosDb:PrimaryKey");
             // Bind database-related bindings
-            CosmosDbSettings cosmosDbConfig = configuration.GetSection("ConnectionStrings:CosmosDB").Get<CosmosDbSettings>();
+            CosmosDbSettings cosmosDbConfig = configuration.GetSection("CosmosDB").Get<CosmosDbSettings>();
             // register CosmosDB client and data repositories
             services.AddCosmosDb(cosmosDbConfig.EndpointUrl,
                                  string.IsNullOrEmpty(cosmosDbConfig.PrimaryKey) ? configuration["ResumeServices:ConnectionStrings:CosmosDb:PrimaryKey"] : cosmosDbConfig.PrimaryKey,

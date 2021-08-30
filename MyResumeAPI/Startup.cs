@@ -27,11 +27,12 @@ namespace MyResumeAPI {
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyResumeAPI", Version = "v1" });
             });
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-           .AddMicrosoftIdentityWebApi(options => {
-               Configuration.Bind("AzureAdB2C", options);
-               options.TokenValidationParameters.NameClaimType = "name";
-           }, options => { Configuration.Bind("AzureAdB2C", options); });
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+           // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+           //.AddMicrosoftIdentityWebApi(options => {
+           //    Configuration.Bind("AzureAdB2C", options);
+           //    options.TokenValidationParameters.NameClaimType = "name";
+           //}, options => { Configuration.Bind("AzureAdB2C", options); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +46,7 @@ namespace MyResumeAPI {
             }
 
             app.UseCors(policy =>
-                policy.AllowAnyOrigin()//.WithOrigins("http://localhost:5000", "https://localhost:5001")
+                policy.AllowAnyOrigin()
                       .AllowAnyMethod()
                       .WithHeaders(HeaderNames.ContentType));
 
