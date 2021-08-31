@@ -61,7 +61,7 @@ namespace InstitutionAPI.Controllers {
         /// </summary>
         /// <param name="institution"></param>
         /// <returns>The Id of the new record as a string.</returns>
-        [HttpPost("create")]
+        [HttpPost("Create")]
         [SwaggerResponse(200, "Success", typeof(string))]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
@@ -127,7 +127,7 @@ namespace InstitutionAPI.Controllers {
         /// Gets a List of all Institution Entities currently stored in the system.
         /// </summary>
         /// <returns>A Listing of all existing Institution Entity records or an Error.</returns>
-        [HttpGet("all")]
+        [HttpGet("All")]
         [SwaggerResponse(200, "Success", typeof(List<InstitutionResponse>))]
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
@@ -162,7 +162,7 @@ namespace InstitutionAPI.Controllers {
         /// <param name="id"></param>
         /// <param name="institution"></param>
         /// <returns>The updated Institution Entity record or an Error.</returns>
-        [HttpPut("put/{id:guid}")]
+        [HttpPut("{id:guid}")]
         [SwaggerResponse(200, "Success", typeof(InstitutionResponse))]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
@@ -203,7 +203,7 @@ namespace InstitutionAPI.Controllers {
         /// <param name="id"></param>
         /// <param name="institution"></param>
         /// <returns>The updated Institution Entity record or an Error.</returns>
-        [HttpPatch("patch/{id:guid}")]
+        [HttpPatch("{id:guid}")]
         [SwaggerResponse(200, "Success", typeof(InstitutionResponse))]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
@@ -245,7 +245,7 @@ namespace InstitutionAPI.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Ok Response or Error.</returns>
-        [HttpDelete("remove/{id:guid}")]
+        [HttpDelete("{id:guid}")]
         [SwaggerResponse(200, "Success")]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]

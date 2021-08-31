@@ -9,7 +9,6 @@ using Microsoft.OpenApi.Models;
 using MyResumeAPI.Config;
 using MyResumeAPI.Extensions;
 using ResumeInfastructure.CosmosDbData.Extension;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 

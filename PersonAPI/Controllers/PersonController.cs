@@ -61,7 +61,7 @@ namespace PersonAPI.Controllers {
         /// </summary>
         /// <param name="person"></param>
         /// <returns>The Id of the new record as a string.</returns>
-        [HttpPost("create")]
+        [HttpPost("Create")]
         [SwaggerResponse(200, "Success", typeof(string))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
@@ -126,7 +126,7 @@ namespace PersonAPI.Controllers {
         /// Gets a List of all Person Entities currently stored in the system.
         /// </summary>
         /// <returns>A Listing of all existing Person Entity records or an Error.</returns>
-        [HttpGet("all")]
+        [HttpGet("All")]
         [SwaggerResponse(200, "Success", typeof(List<PersonResponse>))]
         [SwaggerResponse(204, "Record Not Found", typeof(NoContentResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
@@ -161,7 +161,7 @@ namespace PersonAPI.Controllers {
         /// <param name="id"></param>
         /// <param name="person"></param>
         /// <returns>The updated Person Entity record or an Error.</returns>
-        [HttpPut("put/{id:guid}")]
+        [HttpPut("{id:guid}")]
         [SwaggerResponse(200, "Success", typeof(PersonResponse))]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
@@ -202,7 +202,7 @@ namespace PersonAPI.Controllers {
         /// <param name="id"></param>
         /// <param name="person"></param>
         /// <returns>The updated Person Entity record or an Error.</returns>
-        [HttpPatch("patch/{id:guid}")]
+        [HttpPatch("{id:guid}")]
         [SwaggerResponse(200, "Success", typeof(PersonResponse))]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
@@ -244,7 +244,7 @@ namespace PersonAPI.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Ok Response or Error.</returns>
-        [HttpDelete("remove/{id:guid}")]
+        [HttpDelete("{id:guid}")]
         [SwaggerResponse(200, "Success")]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
