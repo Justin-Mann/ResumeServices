@@ -49,7 +49,7 @@ namespace PersonAPI {
             app.UseCors(policy =>
                 policy.AllowAnyOrigin()
                       .AllowAnyMethod()
-                      .WithHeaders(HeaderNames.ContentType));
+                      .AllowAnyHeader());
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();

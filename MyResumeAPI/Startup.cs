@@ -25,14 +25,18 @@ namespace MyResumeAPI {
             services.SetupCosmosDb(Configuration);
             services.AddAutoMapper(typeof(Startup));
             services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
-            services.AddControllers(options => {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .RequireClaim("name")
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            }).AddNewtonsoftJson();
-            services.AddSwaggerGen(c => {
+            services.AddControllers().AddNewtonsoftJson();
+
+            //options =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder()
+            //        .RequireAuthenticatedUser()
+            //        .RequireClaim("name")
+            //        .Build();
+            //    options.Filters.Add(new AuthorizeFilter(policy));
+            //}
+
+                services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyResumeAPI", Version = "v1" });
             });
         }
@@ -49,7 +53,7 @@ namespace MyResumeAPI {
             app.UseCors(policy =>
                 policy.AllowAnyOrigin()
                       .AllowAnyMethod()
-                      .WithHeaders(HeaderNames.ContentType));
+                      .AllowAnyHeader());
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();

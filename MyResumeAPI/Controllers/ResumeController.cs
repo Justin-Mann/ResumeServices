@@ -11,6 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MyResumeAPI.Controllers {
@@ -67,6 +68,8 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Create([FromBody] Resume resume) {
             HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
+            // Get the user Id from identity and set it as the Resume.Owner
+            resume.Owner = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             _logger.LogInformation("Begin : Create Resume", resume);
             if (resume is null) {
                 var msg = "The resume parameter cannot be null.";
@@ -94,14 +97,14 @@ namespace MyResumeAPI.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns>An existing Resume Entity record or an Error.</returns>
+        [AllowAnonymous]//TODO:: only allow the app to read this without a user being logged in (no more allow anon) go get a token from aad
         [HttpGet("{id:guid}")]
         [SwaggerResponse(200, "Success", typeof(ResumeResponse))]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetResumeById(Guid id) {
-            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
-            _logger.LogInformation("Begin : Get Institution By Id", id);
+            _logger.LogInformation("Begin : Get Resume By Id", id);
             try {
                 var result = await _resumeRepo.GetItemAsync(id.ToString());
                 if ( result is null ) {
@@ -110,7 +113,45 @@ namespace MyResumeAPI.Controllers {
                     return NotFound(msg);
                 }
                 var ret = _mapper.Map<ResumeResponse>(result);
-                _logger.LogInformation("End : Get Institution By Id - Success", ret);
+                _logger.LogInformation("End : Get Resume By Id - Success", ret);
+                return Ok(ret);
+            } catch ( ArgumentException ae ) {
+                _logger.LogError(ae, "BadRequest");
+                return BadRequest(ae.Message);
+            } catch ( Exception e ) {
+                _logger.LogError(e, "Error (500)");
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets a List of all Resume Entities having a specific Owner (UserID) associated currently stored in the system.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("Owner/{userId}")]
+        [SwaggerResponse(200, "Success", typeof(ResumeResponse))]
+        [SwaggerResponse(204, "No Records Not Found", typeof(NoContentResult))]
+        [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
+        [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
+        public async Task<IActionResult> GetResumesByOwner(string userId) {
+            HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
+            _logger.LogInformation("Begin : Get Resumes By Owner (UserId)", userId);
+            try {
+                string query = @$"SELECT * FROM c Where c.Resume.Owner = '{userId}'";
+                var results = await _resumeRepo.GetItemsAsync(query);
+                if (!results.Any())
+                {
+                    var msg = $"No Resume Records Found.";
+                    _logger.LogWarning($"NoContent - {msg}");
+                    return NoContent();
+                }
+                ResumesResponse ret = new();
+                foreach (var result in results)
+                {  //TODO:: improve with another automapper profile.. make automapper do this
+                    ret.Resumes.Add(_mapper.Map<ResumeResponse>(result));
+                }
+                _logger.LogInformation("End : Get Resumes By Owner (UserId) - Success", ret);
                 return Ok(ret);
             } catch ( ArgumentException ae ) {
                 _logger.LogError(ae, "BadRequest");
@@ -144,7 +185,7 @@ namespace MyResumeAPI.Controllers {
                 foreach ( var result in results ) {  //TODO:: improve with another automapper profile.. make automapper do this
                     ret.Resumes.Add(_mapper.Map<ResumeResponse>(result));
                 }
-                _logger.LogInformation("End : Get All Institutions - Success", ret);
+                _logger.LogInformation("End : Get All Resumes - Success", ret);
                 return Ok(ret);
             } catch ( Exception e ) {
                 _logger.LogError(e, "Error (500)");
@@ -166,6 +207,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] Resume resume) {
+            //TODO:: can't update if you don't own it...
             HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
             _logger.LogInformation("Begin : Update Person w/ PUT", new { id, resume });
             if (resume is null) {
@@ -207,6 +249,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> SoftUpdate([FromRoute] Guid id, [FromBody] JsonPatchDocument<Resume> resume) {
             HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
+            //TODO:: can't update if you don't own it...
             _logger.LogInformation("Begin : Update Person w/ PATCH", new { id, resume });
             if (resume is null) {
                 var msg = "The resume parameter cannot be null.";
@@ -248,6 +291,7 @@ namespace MyResumeAPI.Controllers {
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> Remove([FromRoute] Guid id) {
             HttpContext.VerifyUserHasAnyAcceptedScope(writeUserOnly);
+            //TODO:: can't remove if you don't own it...
             _logger.LogInformation("Begin : Remove Resume", id);
             try {
                 if (!await _resumeRepo.DeleteItemAsync(id.ToString())) {
