@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 using MyResumeAPI.Models;
 using MyResumeAPI.Models.Response;
@@ -22,6 +23,7 @@ namespace MyResumeAPI.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class ResumeController: ControllerBase {
+        static readonly string[] clientApplicationAsUser = new string[] { "API.Access" };
         static readonly string[] readUserOnly = new string[] { "Reader" };
         static readonly string[] writeUserOnly = new string[] { "Contributor" };
         static readonly string[] readWriteUser = new string[] { "Reader", "Contributor" };
@@ -98,6 +100,7 @@ namespace MyResumeAPI.Controllers {
         /// <param name="id"></param>
         /// <returns>An existing Resume Entity record or an Error.</returns>
         [AllowAnonymous]//TODO:: only allow the app to read this without a user being logged in (no more allow anon) go get a token from aad
+        //[AuthorizeForScopes(Scopes = new[] { "api://b0cc8d13-bdf9-43f2-9307-5cc9fd81893f/API.Access" })]
         [HttpGet("{id:guid}")]
         [SwaggerResponse(200, "Success", typeof(ResumeResponse))]
         [SwaggerResponse(404, "Record Not Found", typeof(NotFoundResult))]
@@ -129,14 +132,15 @@ namespace MyResumeAPI.Controllers {
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [HttpGet("Owner/{userId}")]
+        [HttpGet("Owned/{userId}")]
         [SwaggerResponse(200, "Success", typeof(ResumeResponse))]
         [SwaggerResponse(204, "No Records Not Found", typeof(NoContentResult))]
         [SwaggerResponse(400, "Bad Request", typeof(BadRequestResult))]
         [SwaggerResponse(500, "An Error Has Occured", typeof(StatusCodeResult))]
         public async Task<IActionResult> GetResumesByOwner(string userId) {
+            userId = User.FindFirstValue("sub") ?? userId; //only works if user is logged in (using Authorize above)
             HttpContext.VerifyUserHasAnyAcceptedScope(readWriteUser);
-            _logger.LogInformation("Begin : Get Resumes By Owner (UserId)", userId);
+            _logger.LogInformation($"Begin : Get Resumes By Owner ({userId})", userId);
             try {
                 string query = @$"SELECT * FROM c Where c.Resume.Owner = '{userId}'";
                 var results = await _resumeRepo.GetItemsAsync(query);

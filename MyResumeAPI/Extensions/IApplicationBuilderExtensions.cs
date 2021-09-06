@@ -28,6 +28,7 @@ namespace MyResumeAPI.Extensions {
                     ResumeEntity resEnt = new() {
                         Id = "dbbab80d-fe68-40df-9ab6-7043777c3da4", // CHANGE THIS IF EVER BUILDING MORE THAN ONE RECORD
                         Resume = new() {
+                            Owner = "9ZWnWuGgbnp8IvCFwR84w6phvKHpUOEGWGruwRmBl_E",
                             DocumentVersion = new DocumentVersion { Major = 1, Minor = 0 },
                             Person = new Person {
                                 FName = "Justin",
